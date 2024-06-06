@@ -16,6 +16,17 @@ function Edit({show, onClick, }) {
   return show ? <button onClick={onClick}>Edit</button> : null
 }
 
+function Editone({show, }) {
+  return !show ? <button>Edit</button> : null
+}
+function Edittwo({show, }) {
+  return !show ? <button>Edit</button> : null
+}
+function Editthree({show, }) {
+  return !show ? <button>Edit</button> : null
+}
+
+
 CustomInput.defaultProps = {
   placeholder: ""
 };
@@ -23,7 +34,13 @@ CustomInput.defaultProps = {
 
 export default function App() {
 
-  const [showbutton, setShowButton] = useState(false)
+  const [showfirstsection, setShowFirstSection] = useState(false)
+
+  const [showsecondsection, setShowSecondSection] = useState(false)
+
+  const [showthirdsection, setShowThirdSection] = useState(false)
+
+  const [showeditbutton, setShowEditButton] = useState(false)
   
   const [value, setValue] = useState(""); 
 
@@ -66,34 +83,74 @@ export default function App() {
     setEighthValue(e.target.value)
   }
   
-
+  function FirstSection() {
+    setShowFirstSection(true)
+    setShowEditButton(true)
+  }
+  function SecondSection() {
+    setShowSecondSection(true)
+    setShowEditButton(true)
+  }
+  function ThirdSection() {
+    setShowThirdSection(true)
+    setShowEditButton(true)
+  }
+  function NormalFirstSection() {
+    setShowFirstSection(false)
+    setShowEditButton(false)
+  }
+  function NormalSecondSection() {
+    setShowSecondSection(false)
+    setShowEditButton(false)
+  }
+  function NormalThirdSection() {
+    setShowThirdSection(false)
+    setShowEditButton(false)
+  }
   
 
   return (
     <>
-      <CustomInput show={showbutton} placeholder = "Name" value={value} onChange={showtextvalue}/>
-      <CustomInput show={showbutton} placeholder = "Phone" value={secondvalue} onChange={showsecondtextvalue}/>
-      <CustomInput show={showbutton} placeholder = "Email" value={thirdvalue} onChange={showthirdtextvalue}/>
-      <CustomInput show={showbutton} placeholder = "School Name" value={fourthvalue} onChange={showfourthtextvalue}/>
-      <CustomInput show={showbutton} placeholder = "Title Of Study" value={fifthvalue} onChange={showfifthtextvalue}/>
-      <CustomInput show={showbutton} placeholder = "Company Name" value={sixthvalue} onChange={showsixthtextvalue}/>
-      <CustomInput show={showbutton} placeholder = "Job Role" value={seventhvalue} onChange={showseventhtextvalue}/>
-      <CustomInput show={showbutton} placeholder = "Starting Date Working For That Company" value={eighthvalue} onChange={showeighthtextvalue}/>
-      <Button show={showbutton} onClick={() => setShowButton(true)}/>      
-      <Paragraphs show={showbutton} value={value}/> 
-      <Paragraphs show={showbutton} value={secondvalue}/> 
-      <Paragraphs show={showbutton} value={thirdvalue}/> 
-      <Paragraphs show={showbutton} value={fourthvalue}/> 
-      <Paragraphs show={showbutton} value={fifthvalue}/> 
-      <Paragraphs show={showbutton} value={sixthvalue}/> 
-      <Paragraphs show={showbutton} value={seventhvalue}/> 
-      <Paragraphs show={showbutton} value={eighthvalue}/> 
-      <Edit show={showbutton} onClick={() => setShowButton(false)}/>
+    <div>
+      <CustomInput show={showfirstsection} placeholder = "Name" value={value} onChange={showtextvalue}/>
+      <CustomInput show={showfirstsection} placeholder = "Phone" value={secondvalue} onChange={showsecondtextvalue}/>
+      <CustomInput show={showfirstsection} placeholder = "Email" value={thirdvalue} onChange={showthirdtextvalue}/>
+      <Button show={showfirstsection} onClick={FirstSection}/>      
+      <Editone show={showfirstsection}/>
+    </div>
+    <div>
+      <CustomInput show={showsecondsection} placeholder = "School Name" value={fourthvalue} onChange={showfourthtextvalue}/>
+      <CustomInput show={showsecondsection} placeholder = "Title Of Study" value={fifthvalue} onChange={showfifthtextvalue}/>
+      <Button show={showsecondsection} onClick={SecondSection}/>      
+      <Edittwo show={showsecondsection}/>
+    </div> 
+    <div>
+      <CustomInput show={showthirdsection} placeholder = "Company Name" value={sixthvalue} onChange={showsixthtextvalue}/>
+      <CustomInput show={showthirdsection} placeholder = "Job Role" value={seventhvalue} onChange={showseventhtextvalue}/>
+      <CustomInput show={showthirdsection} placeholder = "Starting Date Working For That Company" value={eighthvalue} onChange={showeighthtextvalue}/>
+      <Button show={showthirdsection} onClick={ThirdSection}/>      
+      <Editthree show={showthirdsection}/>
+    </div>  
+    <div>
+      <Paragraphs show={showfirstsection} value={value}/> 
+      <Paragraphs show={showfirstsection} value={secondvalue}/> 
+      <Paragraphs show={showfirstsection} value={thirdvalue}/> 
+      <Edit show={showfirstsection} onClick={NormalFirstSection}/>
+    </div>
+    <div>
+      <Paragraphs show={showsecondsection} value={fourthvalue}/> 
+      <Paragraphs show={showsecondsection} value={fifthvalue}/> 
+      <Edit show={showsecondsection} onClick={NormalSecondSection}/>
+    </div>
+    <div>
+      <Paragraphs show={showthirdsection} value={sixthvalue}/> 
+      <Paragraphs show={showthirdsection} value={seventhvalue}/> 
+      <Paragraphs show={showthirdsection} value={eighthvalue}/> 
+      <Edit show={showthirdsection} onClick={NormalThirdSection}/>
+    </div>
+      
+      
+     
   </>
   );
 }
-
-// component that returns an input using placeholder, onChange, value. and a button using state prop, onClick
-// 2nd component returns a paragrph using value, state ref and a button using state, onClick, 
-// first component return multiple inputs. 2nd componentn return multiple paragraphs
-// defaultValue={value} onChange={TheFinalValue} function TheFinalValue(e) {setShowFinalValue(e.target.value)}
