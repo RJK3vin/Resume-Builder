@@ -58,29 +58,8 @@ export default function App() {
 
   const [eighthvalue, setEighthValue] = useState(""); 
 
-  function showtextvalue(e ) {
-    setValue(e.target.value)
-  }
-  function showsecondtextvalue(e) {
-    setSecondValue(e.target.value)
-  }
-  function showthirdtextvalue(e) {
-    setThirdValue(e.target.value)
-  }
-  function showfourthtextvalue(e) {
-    setFourthValue(e.target.value)
-  }
-  function showfifthtextvalue(e) {
-    setFifthValue(e.target.value)
-  }
-  function showsixthtextvalue(e) {
-    setSixthValue(e.target.value)
-  }
-  function showseventhtextvalue(e) {
-    setSeventhValue(e.target.value)
-  }
-  function showeighthtextvalue(e) {
-    setEighthValue(e.target.value)
+  function showtextvalue(e, callback) {
+    callback(e.target.value)
   }
   
   function FirstSection() {
@@ -112,22 +91,22 @@ export default function App() {
   return (
     <>
     <div>
-      <CustomInput show={showfirstsection} placeholder = "Name" value={value} onChange={showtextvalue}/>
-      <CustomInput show={showfirstsection} placeholder = "Phone" value={secondvalue} onChange={showsecondtextvalue}/>
-      <CustomInput show={showfirstsection} placeholder = "Email" value={thirdvalue} onChange={showthirdtextvalue}/>
+      <CustomInput show={showfirstsection} placeholder = "Name" value={value} onChange={ (e) => showtextvalue(e, setValue)}/>
+      <CustomInput show={showfirstsection} placeholder = "Phone" value={secondvalue} onChange={ (e) => showtextvalue(e, setSecondValue)}/>
+      <CustomInput show={showfirstsection} placeholder = "Email" value={thirdvalue} onChange={ (e) => showtextvalue(e, setThirdValue)}/>
       <Button show={showfirstsection} onClick={FirstSection}/>      
       <Editone show={showfirstsection}/>
     </div>
     <div>
-      <CustomInput show={showsecondsection} placeholder = "School Name" value={fourthvalue} onChange={showfourthtextvalue}/>
-      <CustomInput show={showsecondsection} placeholder = "Title Of Study" value={fifthvalue} onChange={showfifthtextvalue}/>
+      <CustomInput show={showsecondsection} placeholder = "School Name" value={fourthvalue} onChange={ (e) => showtextvalue(e, setFourthValue)}/>
+      <CustomInput show={showsecondsection} placeholder = "Title Of Study" value={fifthvalue} onChange={ (e) => showtextvalue(e, setFifthValue)}/>
       <Button show={showsecondsection} onClick={SecondSection}/>      
       <Edittwo show={showsecondsection}/>
     </div> 
     <div>
-      <CustomInput show={showthirdsection} placeholder = "Company Name" value={sixthvalue} onChange={showsixthtextvalue}/>
-      <CustomInput show={showthirdsection} placeholder = "Job Role" value={seventhvalue} onChange={showseventhtextvalue}/>
-      <CustomInput show={showthirdsection} placeholder = "Starting Date Working For That Company" value={eighthvalue} onChange={showeighthtextvalue}/>
+      <CustomInput show={showthirdsection} placeholder = "Company Name" value={sixthvalue} onChange={ (e) => showtextvalue(e, setSixthValue)}/>
+      <CustomInput show={showthirdsection} placeholder = "Job Role" value={seventhvalue} onChange={ (e) => showtextvalue(e, setSeventhValue)}/>
+      <CustomInput show={showthirdsection} placeholder = "Starting Date Working For That Company" value={eighthvalue} onChange={ (e) => showtextvalue(e, setEighthValue)}/>
       <Button show={showthirdsection} onClick={ThirdSection}/>      
       <Editthree show={showthirdsection}/>
     </div>  
@@ -148,9 +127,6 @@ export default function App() {
       <Paragraphs show={showthirdsection} value={eighthvalue}/> 
       <Edit show={showthirdsection} onClick={NormalThirdSection}/>
     </div>
-      
-      
-     
   </>
   );
 }
